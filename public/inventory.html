@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantix - Inventario</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/crud.css">
+    <style>
+        .stock-badge { padding: 4px 8px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; }
+        .stock-low { background: #FEE2E2; color: #991B1B; }
+        .stock-ok { background: #DCFCE7; color: #166534; }
+        .provider-tag { display: inline-block; background: #F3F4F6; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-right: 4px; border: 1px solid #E5E7EB; }
+    </style>
+</head>
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Quantix Store</h2>
+            <button id="btnCloseMenu" class="close-menu-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul id="navMenu">
+                <li><a href="dashboard.html">📊 Resumen</a></li>
+                <li><a href="profile.html">👤 Mi Perfil</a></li>
+                
+                <li><a href="sales.html">💰 Ventas</a></li>
+                <li><a href="inventory.html" class="active">📦 Productos</a></li>
+                <li><a href="categories.html">📂 Categorías</a></li>
+                <li><a href="providers.html">🚚 Proveedores</a></li>
+                <li><a href="clients.html">👥 Clientes</a></li>
+
+                <li id="menuUsuarios" style="display: none;">
+                    <a href="users.html">⚙️ Gestión de Usuarios</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="btnLogout" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </aside>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="header-left">
+                <button id="btnOpenMenu" class="hamburger-btn">☰</button>
+                <h1 class="page-title">Gestión de Inventario</h1>
+            </div>
+            <div class="header-profile">
+                <div class="profile-info" style="text-align: right; margin-right: 10px;">
+                    <span id="userNameDisplay" class="user-name" style="color: var(--text-color);">Cargando...</span>
+                </div>
+                <div class="avatar">Q</div>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <section class="data-section">
+                <div class="section-header">
+                    <div class="search-box">
+                        <input type="text" id="mainSearch" placeholder="Buscar por nombre o categoría...">
+                    </div>
+                    <button id="btnNewProduct" class="btn-primary">+ Nuevo Producto</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Proveedores</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody">
+                            <tr><td colspan="7" class="text-center">Cargando productos...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nuevo Producto</h2>
+                <button id="btnCloseModal" class="close-modal">&times;</button>
+            </div>
+
+            <form id="productForm" class="modal-form">
+                <input type="hidden" id="productId" name="id">
+                
+                <div class="floating-group">
+                    <input type="text" id="nameProduct" name="nameProduct" class="floating-input" placeholder=" " required>
+                    <label for="nameProduct" class="floating-label">Nombre del Producto</label>
+                </div>
+
+                <div style="display: flex; gap: 15px;">
+                    <div class="floating-group" style="flex: 1;">
+                        <input type="number" id="price" name="price" class="floating-input" placeholder=" " step="0.01" required>
+                        <label for="price" class="floating-label">Precio ($)</label>
+                    </div>
+                    <div class="floating-group" style="flex: 1;">
+                        <input type="number" id="stock" name="stock" class="floating-input" placeholder=" " required>
+                        <label for="stock" class="floating-label">Stock Inicial</label>
+                    </div>
+                </div>
+
+                <div class="select-group">
+                    <label>Categoría</label>
+                    <select id="categoryId" name="categoryId" required>
+                        <option value="">Seleccione una categoría...</option>
+                    </select>
+                </div>
+
+                <div class="select-group">
+                    <label>Proveedores (Mantén Ctrl para elegir varios)</label>
+                    <select id="providerIds" name="providerIds" multiple style="height: 100px;">
+                    </select>
+                </div>
+
+                <p id="formError" class="error-text" style="display: none;"></p>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnCancel" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/inventory.js" defer></script>
+</body>
+</html>

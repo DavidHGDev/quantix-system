@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantix - Iniciar Sesión</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+
+    <main class="login-container">
+        <form id="loginForm" class="login-card">
+            
+            <div class="brand-header">
+                <h2>Quantix Store</h2>
+                <p>Ingresa tus credenciales para continuar</p>
+            </div>
+
+            <div class="floating-group">
+                <input type="email" id="email" name="email" class="floating-input" placeholder=" " required>
+                <label for="email" class="floating-label">Correo Electrónico</label>
+            </div>
+            
+            <div class="floating-group">
+                <input type="password" id="password" name="password" class="floating-input" placeholder=" " required>
+                <label for="password" class="floating-label">Contraseña</label>
+            </div>
+
+            <p id="errorMessage" class="error-text" style="display: none;"></p>
+
+            <button type="submit" id="btnLogin" class="btn-primary">Iniciar Sesión</button>
+            
+        </form>
+    </main>
+
+    <script src="/js/login.js" defer></script>
+</body>
+</html>

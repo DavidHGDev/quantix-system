@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantix - Proveedores</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/crud.css">
+    <style>
+        .contact-link { color: var(--primary-color); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
+        .contact-link:hover { text-decoration: underline; }
+        .badge-products { background: #EEF2FF; color: #4338CA; padding: 2px 10px; border-radius: 12px; font-weight: bold; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Quantix Store</h2>
+            <button id="btnCloseMenu" class="close-menu-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul id="navMenu">
+                <li><a href="dashboard.html">📊 Resumen</a></li>
+                <li><a href="profile.html">👤 Mi Perfil</a></li>
+                
+                <li><a href="sales.html">💰 Ventas</a></li>
+                <li><a href="inventory.html">📦 Productos</a></li>
+                <li><a href="categories.html">📂 Categorías</a></li>
+                <li><a href="providers.html" class="active">🚚 Proveedores</a></li>
+                <li><a href="clients.html">👥 Clientes</a></li>
+
+                <li id="menuUsuarios" style="display: none;">
+                    <a href="users.html">⚙️ Gestión de Usuarios</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="btnLogout" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </aside>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="header-left">
+                <button id="btnOpenMenu" class="hamburger-btn">☰</button>
+                <h1 class="page-title">Gestión de Proveedores</h1>
+            </div>
+            <div class="header-profile">
+                <div class="profile-info" style="text-align: right; margin-right: 10px;">
+                    <span id="userNameDisplay" class="user-name" style="color: var(--text-color);">Cargando...</span>
+                </div>
+                <div class="avatar">Q</div>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <section class="data-section">
+                <div class="section-header">
+                    <div class="search-box">
+                        <input type="text" id="providerSearch" placeholder="Buscar por nombre o correo...">
+                    </div>
+                    <button id="btnNewProvider" class="btn-primary">+ Nuevo Proveedor</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre / Empresa</th>
+                                <th>Teléfono</th>
+                                <th>Correo Electrónico</th>
+                                <th>Productos Asoc.</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="providerTableBody">
+                            <tr><td colspan="6" class="text-center">Cargando proveedores...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="providerModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nuevo Proveedor</h2>
+                <button id="btnCloseModal" class="close-modal">&times;</button>
+            </div>
+            <form id="providerForm" class="modal-form">
+                <input type="hidden" id="providerId" name="id">
+                
+                <div class="floating-group">
+                    <input type="text" id="name" name="name" class="floating-input" placeholder=" " required>
+                    <label for="name" class="floating-label">Nombre de la Empresa o Contacto</label>
+                </div>
+
+                <div class="floating-group">
+                    <input type="tel" id="phone" name="phone" class="floating-input" placeholder=" ">
+                    <label for="phone" class="floating-label">Teléfono / WhatsApp</label>
+                </div>
+
+                <div class="floating-group">
+                    <input type="email" id="email" name="email" class="floating-input" placeholder=" ">
+                    <label for="email" class="floating-label">Correo Electrónico</label>
+                </div>
+
+                <p id="formError" class="error-text" style="display: none;"></p>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnCancel" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Proveedor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/providers.js" defer></script>
+</body>
+</html>

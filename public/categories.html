@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantix - Categorías</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/crud.css">
+</head>
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Quantix Store</h2>
+            <button id="btnCloseMenu" class="close-menu-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul id="navMenu">
+                <li><a href="dashboard.html">📊 Resumen</a></li>
+                <li><a href="profile.html">👤 Mi Perfil</a></li>
+                
+                <li><a href="sales.html">💰 Ventas</a></li>
+                <li><a href="inventory.html">📦 Productos</a></li>
+                <li><a href="categories.html" class="active">📂 Categorías</a></li>
+                <li><a href="providers.html">🚚 Proveedores</a></li>
+                <li><a href="clients.html">👥 Clientes</a></li>
+
+                <li id="menuUsuarios" style="display: none;">
+                    <a href="users.html">⚙️ Gestión de Usuarios</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="btnLogout" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </aside>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="header-left">
+                <button id="btnOpenMenu" class="hamburger-btn">☰</button>
+                <h1 class="page-title">Categorías de Productos</h1>
+            </div>
+            <div class="header-profile">
+                <div class="profile-info" style="text-align: right; margin-right: 10px;">
+                    <span id="userNameDisplay" class="user-name">Cargando...</span>
+                </div>
+                <div class="avatar">Q</div>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <section class="data-section">
+                <div class="section-header">
+                    <div class="search-box">
+                        <input type="text" id="categorySearch" placeholder="Buscar categoría...">
+                    </div>
+                    <button id="btnNewCategory" class="btn-primary">+ Nueva Categoría</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Total Productos</th> 
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoryTableBody">
+                            <tr><td colspan="5" class="text-center">Cargando categorías...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="categoryModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nueva Categoría</h2>
+                <button id="btnCloseModal" class="close-modal">&times;</button>
+            </div>
+            <form id="categoryForm" class="modal-form">
+                <input type="hidden" id="categoryId" name="id">
+                <div class="floating-group">
+                    <input type="text" id="name" name="name" class="floating-input" placeholder=" " required>
+                    <label for="name" class="floating-label">Nombre de la Categoría</label>
+                </div>
+                <div class="floating-group">
+                    <textarea id="description" name="description" class="floating-input" style="height: 100px; padding-top: 20px;" placeholder=" "></textarea>
+                    <label for="description" class="floating-label">Descripción (Opcional)</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCancel" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/categories.js" defer></script>
+</body>
+</html>

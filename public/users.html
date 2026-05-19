@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantix - Usuarios</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/crud.css">
+</head>
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Quantix Store</h2>
+            <button id="btnCloseMenu" class="close-menu-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul id="navMenu">
+                <li><a href="dashboard.html">📊 Resumen</a></li>
+                <li><a href="profile.html">👤 Mi Perfil</a></li>
+                
+                <li><a href="sales.html">💰 Ventas</a></li>
+                <li><a href="inventory.html">📦 Productos</a></li>
+                <li><a href="categories.html">📂 Categorías</a></li>
+                <li><a href="providers.html">🚚 Proveedores</a></li>
+                <li><a href="clients.html">👥 Clientes</a></li>
+
+                <li id="menuUsuarios">
+                    <a href="users.html" class="active">⚙️ Gestión de Usuarios</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="btnLogout" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </aside>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="header-left">
+                <button id="btnOpenMenu" class="hamburger-btn">☰</button>
+                <h1 class="page-title">Gestión de Usuarios</h1>
+            </div>
+            <div class="header-profile">
+                <div class="profile-info" style="text-align: right; margin-right: 10px;">
+                    <span id="userNameDisplay" class="user-name">Cargando...</span>
+                </div>
+                <div class="avatar">Q</div>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <section class="data-section">
+                <div class="section-header">
+                    <h2>Lista de Empleados</h2>
+                    <button id="btnNewUser" class="btn-primary">+ Nuevo Usuario</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr><td colspan="6" class="text-center text-muted">Cargando usuarios...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="userModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nuevo Usuario</h2>
+                <button id="btnCloseModal" class="close-modal">&times;</button>
+            </div>
+
+            <form id="userForm" class="modal-form">
+                <input type="hidden" id="userId" name="id">
+
+                <div class="floating-group">
+                    <input type="text" id="name" name="name" class="floating-input" placeholder=" " required>
+                    <label for="name" class="floating-label">Nombre *</label>
+                </div>
+
+                <div class="floating-group">
+                    <input type="text" id="lastName" name="lastName" class="floating-input" placeholder=" ">
+                    <label for="lastName" class="floating-label">Apellido</label>
+                </div>
+
+                <div class="floating-group">
+                    <input type="email" id="email" name="email" class="floating-input" placeholder=" " required>
+                    <label for="email" class="floating-label">Correo Electrónico *</label>
+                </div>
+
+                <div class="floating-group">
+                    <input type="password" id="password" name="password" class="floating-input" placeholder=" ">
+                    <label for="password" class="floating-label" id="passwordLabel">Contraseña *</label>
+                    <small id="passwordHelp" class="help-text">Déjala en blanco si no deseas cambiarla.</small>
+                </div>
+
+                <div class="select-group">
+                    <label for="role">Rol del Sistema</label>
+                    <select id="role" name="role" required>
+                        <option value="VENDEDOR">Vendedor</option>
+                        <option value="AUDITOR">Auditor</option>
+                        <option value="ADMIN">Administrador</option>
+                    </select>
+                </div>
+
+                <p id="formError" class="error-text" style="display: none;"></p>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnCancel" class="btn-secondary">Cancelar</button>
+                    <button type="submit" id="btnSave" class="btn-primary">Guardar Usuario</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/users.js" defer></script>
+</body>
+</html>

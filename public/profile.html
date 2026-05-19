@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantix - Mi Perfil</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/crud.css">
+    <style>
+        .profile-container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+        .profile-header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
+        .profile-avatar { width: 80px; height: 80px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: bold; }
+        .profile-info h2 { margin: 0; color: var(--text-color); }
+        .profile-info p { margin: 5px 0 0; color: var(--text-muted); font-size: 0.9rem; }
+        .role-badge { display: inline-block; padding: 4px 10px; background: #E0E7FF; color: #3730A3; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-top: 5px; }
+        #adminSearchContainer { animation: slideDown 0.4s ease-out; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Quantix Store</h2>
+            <button id="btnCloseMenu" class="close-menu-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul id="navMenu">
+                <li><a href="dashboard.html">📊 Resumen</a></li>
+                <li><a href="profile.html" class="active">👤 Mi Perfil</a></li>
+                
+                <li><a href="sales.html">💰 Ventas</a></li>
+                <li><a href="inventory.html">📦 Productos</a></li>
+                <li><a href="categories.html">📂 Categorías</a></li>
+                <li><a href="providers.html">🚚 Proveedores</a></li>
+                <li><a href="clients.html">👥 Clientes</a></li>
+
+                <li id="menuUsuarios" style="display: none;">
+                    <a href="users.html">⚙️ Gestión de Usuarios</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="btnLogout" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </aside>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="header-left">
+                <button id="btnOpenMenu" class="hamburger-btn">☰</button>
+                <h1 class="page-title">Configuración de Cuenta</h1>
+            </div>
+            <div class="header-profile">
+                <div class="profile-info" style="text-align: right; margin-right: 10px;">
+                    <span id="userNameDisplay" class="user-name" style="color: var(--text-color);">Cargando...</span>
+                </div>
+                <div class="avatar">Q</div>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            
+            <div id="adminSearchContainer" style="display: none; max-width: 600px; margin: 0 auto 20px;">
+                <div class="floating-group" style="margin: 0; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid var(--primary-color);">
+                    <input type="text" id="adminUserSearch" list="adminUserOptions" class="floating-input" placeholder=" " autocomplete="off">
+                    <datalist id="adminUserOptions"></datalist>
+                    <label for="adminUserSearch" class="floating-label">👑 Modo Admin: Buscar otro usuario (Nombre o Correo)</label>
+                </div>
+            </div>
+
+            <div class="profile-container" id="profileCard">
+                
+                <div class="profile-header">
+                    <div class="profile-avatar" id="avatarInitials">U</div>
+                    <div class="profile-info">
+                        <h2 id="profileFullName">Cargando...</h2>
+                        <p id="profileEmail">correo@ejemplo.com</p>
+                        <span class="role-badge" id="profileRole">ROL</span>
+                    </div>
+                </div>
+
+                <form id="profileForm" class="modal-form" style="padding: 0;">
+                    <h3 style="margin-bottom: 20px; color: var(--text-muted); font-size: 1.1rem;">Datos Personales</h3>
+                    
+                    <div style="display: flex; gap: 15px;">
+                        <div class="floating-group" style="flex: 1;">
+                            <input type="text" id="name" name="name" class="floating-input" placeholder=" " required>
+                            <label for="name" class="floating-label">Nombres</label>
+                        </div>
+                        <div class="floating-group" style="flex: 1;">
+                            <input type="text" id="lastName" name="lastName" class="floating-input" placeholder=" ">
+                            <label for="lastName" class="floating-label">Apellidos</label>
+                        </div>
+                    </div>
+
+                    <div class="floating-group">
+                        <input type="email" id="email" name="email" class="floating-input" placeholder=" " required>
+                        <label for="email" class="floating-label">Correo Electrónico</label>
+                    </div>
+
+                    <div class="floating-group" id="roleGroup" style="display: none;">
+                        <select id="role" name="role" class="floating-input" style="padding-top: 15px;">
+                            <option value="VENDEDOR">VENDEDOR</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="AUDITOR">AUDITOR</option>
+                        </select>
+                        <label for="role" class="floating-label">Rol del Usuario</label>
+                    </div>
+
+                    <h3 style="margin: 30px 0 20px; color: var(--text-muted); font-size: 1.1rem;">Seguridad</h3>
+
+                    <div class="floating-group">
+                        <input type="password" id="password" name="password" class="floating-input" placeholder=" ">
+                        <label for="password" class="floating-label">Nueva Contraseña</label>
+                        <small style="color: var(--text-muted); margin-top: 5px; display: block;">Déjalo en blanco para mantener la actual.</small>
+                    </div>
+
+                    <p id="formError" class="error-text" style="display: none;"></p>
+
+                    <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
+                        <button type="submit" id="btnSaveProfile" class="btn-primary" style="padding: 12px 30px; font-size: 1.1rem;">💾 Guardar Cambios</button>
+                    </div>
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="js/profile.js" defer></script>
+</body>
+</html>
