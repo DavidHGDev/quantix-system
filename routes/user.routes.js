@@ -22,8 +22,8 @@ router.get('/:id',
     validarSchema(idParamSchema, 'params'),
     getOneUser);
 router.post('/', 
-    verificarToken,
-    verficarRoles(PERMISOS.ESCRIBIR_USUARIOS),
+    //verificarToken,
+    //verficarRoles(PERMISOS.ESCRIBIR_USUARIOS),
     validarSchema(createUserSchema, 'body'),
     createUser);
 router.patch('/:id', 

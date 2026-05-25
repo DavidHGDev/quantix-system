@@ -5,8 +5,8 @@ services:
     restart: always                 # Si falla o reinicias la PC, intenta levantarla sola
     environment:
       - POSTGRES_DB=quantix
-      - POSTGRES_USER=adminDavid
-      - POSTGRES_PASSWORD=admin456
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=quantixAdmin456
     ports:
       - "5432:5432"
     volumes:
