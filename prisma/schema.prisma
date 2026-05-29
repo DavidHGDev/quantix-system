@@ -34,6 +34,8 @@ model User {
   role     Role    @default(VENDEDOR)
   ventas   Venta[]
   isActive Boolean @default(true)
+
+  @@map("user") //postgres leerá todo en minúscula
 }
 
 model Product {
@@ -45,6 +47,8 @@ model Product {
   categoryId   Int
   detalleVenta Detalle_venta[]
   providers    Provider[]
+
+  @@map("product") 
 }
 
 model Provider {
@@ -53,6 +57,8 @@ model Provider {
   phone    String?
   email    String?
   products Product[]
+
+  @@map("provider")
 }
 
 model Detalle_venta {
@@ -63,6 +69,8 @@ model Detalle_venta {
   venta           Venta   @relation(fields: [ventaId], references: [id])
   cantidadVendida Float
   precioVendido   Float
+
+  @@map("detalle_venta")
 }
 
 model Venta {
@@ -76,6 +84,8 @@ model Venta {
   userId       Int
   user         User            @relation(fields: [userId], references: [id])
   detalleVenta Detalle_venta[]
+
+  @@map("venta")
 }
 
 model Category {
@@ -83,6 +93,8 @@ model Category {
   name        String
   description String?
   products    Product[]
+  
+  @@map("catogory")
 }
 
 model Credit {
@@ -91,6 +103,8 @@ model Credit {
   fecha        DateTime @default(now())
   clientId     Int
   clientCretit Client   @relation(fields: [clientId], references: [id])
+
+  @@map("credit")
 }
 
 model Client {
@@ -102,4 +116,6 @@ model Client {
   tipoDocument TipoDocument
   ventas       Venta[]
   credits      Credit[]
+
+  @@map("client")
 }
